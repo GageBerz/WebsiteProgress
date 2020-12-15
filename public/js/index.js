@@ -21,8 +21,7 @@ $(document).ready(
         );
 
         // Left-hand Tabs
-        // **********FIX ME*************
-        let tabs = $('.tabs'),
+        let tabs = $('.tablinks'),
           content = $('.tab');
 
         tabs.addClass('inactive');
@@ -30,8 +29,9 @@ $(document).ready(
         content.hide();
         content.first().show();
 
-        tabs.click(() => {
+        tabs.click( function() {
           let selected = $(this).attr('id');
+          console.log(selected);
 
           if ($(this).hasClass('inactive')) {
             tabs.addClass('inactive');
@@ -45,9 +45,9 @@ $(document).ready(
         // Drag & Drop Functionality
         $("html").on("drop", function(event) { event.preventDefault(); event.stopPropagation(); });
 
-        let dragging = false;
+        let dragging;
         $('.item').mousedown(
-            function() {
+            function(event) {
                 dragging = $(this);
                 
             }
@@ -58,7 +58,6 @@ $(document).ready(
                 if (dragging != null) {
                     dragging = dragging.detach();
                     dragging.appendTo($(this));
-
                 }
                 dragging = null;
             }
