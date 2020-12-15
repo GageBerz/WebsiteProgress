@@ -177,8 +177,12 @@ nav a.active {
     color: #eee;
 }
 
-.tabs button:hover {
-    background-color: #4186b1;
+.tabs button.inactive:hover {
+    background-color:#3c8eda;
+}
+
+.tabs button.inactive {
+    background-color: #666;
 }
 
 .tabs button.active {
@@ -198,6 +202,8 @@ nav a.active {
 #onettab iframe {
     padding-left: 15%;
 }
+
+/* Game ends */
 
 /* News feed starts */
 #twottab {
@@ -299,9 +305,8 @@ nav a.active {
     display: grid;
     width: 100%;
     grid-gap: 25px;
+    padding-bottom: 5%;
 }
-
-
 
 .friends-grid ul li {
     display: grid;
@@ -325,7 +330,7 @@ nav a.active {
     padding: 10px 0;
 }
 
-.friends-grid ul {margin:0; padding: 0; padding-bottom: 10%;}
+.friends-grid ul {margin:0; padding: 0; height: 100%;}
     
 #online-list ul li {
 background-color: #5390D9;
@@ -349,13 +354,22 @@ background-color: #5390D9;
 
 .dragging-area li {
     display: grid;
-    background-color: #f00;
+    background-color: #b31414;
     grid-template-columns: auto 1fr;
+    padding-right: 10em;
 }
 
+.dragging-area li img {
+    margin-top: 10%;
+}
+
+.dragging-area li h2 {
+    padding:0; 
+    padding-left: .5vw; 
+}
 
 .dragging-area > * {
-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 /* Manage friends ends */
@@ -435,8 +449,4 @@ img.avatar {
 
 @media only screen and (min-width: 1024px) {
     .friends-grid {grid-template-columns: 1fr 1fr 1fr;}
-}
-
-.tabs button.inactive {
-    background-color: #666;
 }

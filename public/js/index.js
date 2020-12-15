@@ -27,20 +27,22 @@ $(document).ready(
         tabs.addClass('inactive');
         tabs.first().removeClass('inactive');
         content.hide();
-        content.first().show();
+        content.first().fadeIn();
 
-        tabs.click( function() {
-          let selected = $(this).attr('id');
-          console.log(selected);
+        tabs.click(
+            function() {
+                let selected = $(this).attr('id');
+                console.log(selected);
 
-          if ($(this).hasClass('inactive')) {
-            tabs.addClass('inactive');
-            $(this).removeClass('inactive');
+                if ($(this).hasClass('inactive')) {
+                    tabs.addClass('inactive');
+                    $(this).removeClass('inactive');
 
-            content.hide();
-            $(`#${selected}tab`).show();
-          }
-        });
+                    content.hide();
+                    $(`#${selected}tab`).fadeIn();
+                }
+            }
+        );
 
         // Drag & Drop Functionality
         $("html").on("drop", function(event) { event.preventDefault(); event.stopPropagation(); });
@@ -87,5 +89,10 @@ $(document).ready(
                 $('.f-grid').removeClass('redrop');
             }
         );
+
+        // DOM Functionality
+
+
+
     }
 );
