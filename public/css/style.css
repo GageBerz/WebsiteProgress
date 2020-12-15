@@ -340,6 +340,24 @@ background-color: #5390D9;
     user-select: none;
 }
 
+.dragging-area {
+    position: fixed;
+    pointer-events: none;
+    list-style: none;
+    
+}
+
+.dragging-area li {
+    display: grid;
+    background-color: #f00;
+    grid-template-columns: auto 1fr;
+}
+
+
+.dragging-area > * {
+transform: translate(-50%, -50%);
+}
+
 /* Manage friends ends */
 
 /* Profile & Settings starts */

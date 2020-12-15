@@ -48,21 +48,44 @@ $(document).ready(
         let dragging;
         $('.item').mousedown(
             function(event) {
-                dragging = $(this);
-                
+                dragging = $(this).detach();
+                dragging.appendTo('.dragging-area');
             }
         );
 
+        $(document).mousemove(
+            function(e) {
+              let x = e.pageX;
+              let y = e.pageY;
+
+              $('.dragging-area').css({
+              'left':x,
+              'top':y
+              });
+
+            }
+          );
+
+
         $('.f-grid').mouseup(
             function() {
-                if (dragging != null) {
-                    dragging = dragging.detach();
-                    dragging.appendTo($(this));
-                }
+                dragging.appendTo($(this));
                 dragging = null;
             }
         );
 
-        
+        $('.f-grid').mousedown(
+            function() {
+                $(this).addClass('redrop');
+        });
+
+        $(document).mouseup(
+            function() {
+                dragging = $('.dragging-area').children().detach();
+                dragging.appendTo('.redrop');
+                dragging = null;
+                $('.f-grid').removeClass('redrop');
+            }
+        );
     }
 );
