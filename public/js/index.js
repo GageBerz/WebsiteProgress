@@ -1,5 +1,8 @@
 $(document).ready( 
     function() {
+
+        // Init stuff
+        $('.name').html($('.core-profile-info').find('.name').text());
     
         // Header Tabs
         let last_clicked = $('.headtablinks').first().attr('id');
@@ -92,6 +95,50 @@ $(document).ready(
 
         // DOM Functionality
 
+        // Submit Comment
+        $('.comment-submit').click(
+            function() {
+                console.log('Clicked comment submit');
+                let post = $('.post').first().clone();
+                if (!($('#comment-text').val().length < 10)) {
+                    post.find('.comment').html($('#comment-text').val());
+                    post.appendTo('.posts');
+                    $('#comment-text').val('');
+                } else {
+                    alert('Must enter more than 10 characters.');
+                }
+            }
+        );
+
+        // Change Profile Settings
+        $('#settings-button').click(
+            function() {
+                let submit_button = $(this).clone().appendTo($('#settings-button-area'));
+                $(submit_button ).find('p').html('Submit Changes');
+                $(submit_button ).css("background-color", "#3daa3b");
+                $(this).hide();
+
+                let previous_name = $('.core-profile-info').find('.name').text();
+                let previous_bio = $('.bio').find('p').text();
+
+                $('.core-profile-info').find('.name').replaceWith($('<textarea class="name">' + previous_name + '</textarea>'));
+                $('.bio').find('p').replaceWith($('<textarea class="bio">' + previous_bio + '</textarea>'));
+
+                
+
+                
+                $(submit_button).click(
+                    function() {
+                        $('.core-profile-info').find('.name').replaceWith($('<p class="name">' + $('.core-profile-info').find('.name').val() + '</p>'));
+                        $('.bio').find('textarea').replaceWith($('<p>' + $('.bio').find('textarea').val() + '</p>'));
+                        $('#settings-button').show();
+                        $(submit_button).remove();
+                        $('.name').html($('.core-profile-info').find('.name').text());
+                    }
+                );
+
+            }
+        );
 
 
     }

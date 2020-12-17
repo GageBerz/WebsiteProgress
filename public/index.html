@@ -28,7 +28,11 @@
         <div id="onehtheadtab" class="headtab">
         
             <div class="grid2">
-                <h1>Welcome Player One!</h1>
+                <div>
+                    <h1>Hello&nbsp;</h1>
+                    <h1 class="name"></h1>
+                </div>
+                
 
                 <div class="search"> 
                     <p>
@@ -54,8 +58,8 @@
                 <div class="posts">
                     <div class="post">
                         <img src="./images/pone.jpg" alt="Biden">
-                        <h2>Player 1</h2>
-                        <p>
+                        <h2 class="name">Player 1</h2>
+                        <p class="comment">
                             This is a post about potatos. Potatos are great, if you 
                             disagree, fight me.
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, expedita voluptatum sunt suscipit doloremque vitae exercitationem quo natus, ea atque aut recusandae dolores unde accusantium aliquid? Quo ipsa autem earum.
@@ -106,10 +110,14 @@
                     <h2>Post a comment:</h2>
 
                     <div class="comment-area">
-                        <textarea name="comment box" id="comment-text" cols="30" rows="10"></textarea>
+                        <textarea name="comment box" id="comment-text" class="comment" placeholder="Enter your comment here." cols="30" rows="10"></textarea>
                     </div>
 
-                    <button class="comment-submit" type="submit">Submit Post</button>
+                    <div class="comment-submit-area">
+                        <p>10 Character minimum.</p>
+                        <button class="comment-submit" type="submit">Submit Post</button>
+                    </div>
+                    
 
                 </div>
                 
@@ -119,7 +127,7 @@
                 <div class="number-featured">
                     <div class="placement" style="width: 100%;">
                         <img src="./images/pone.jpg" alt="Biden">
-                        <h1>1st Player</h1>
+                        <h1 class="name">1st Player</h1>
                         <h2>Score: 6055</h2>
                     </div>
                 </div>
@@ -160,10 +168,6 @@
                     <div id="friends-list">
                         <h1>Friends List</h1>
                         <ul class="f-grid">
-                            <li class="item">
-                                <img src="images/pone.jpg">
-                                <h2>1st Player</h2>
-                            </li>
                             <li class="item">
                                 <img src="images/ptwo.jpg">
                                 <h2>2nd Player</h2>
@@ -244,9 +248,9 @@
             <div class="grid2">
                 <h1>Profile</h1>
 
-                <p>
+                <p id="settings-button-area">
                     <button id="settings-button">
-                        <i class="fas fa-cog"></i> Change Profile Settings
+                        <i class="fas fa-cog"></i> <p>Change Profile Settings</p>
                     </button>
                 </p>
             </div>
@@ -255,19 +259,15 @@
                 <div class="core-profile-info">
                     <div>
                         <p>Display Name:</p>
-                        <p class="name">Potato King</p>
+                        <p class="name">Autarch</p>
                     </div>
                     <div>
                         <p>Rank: </p>
-                        <p class="rank">15</p>
+                        <p class="rank">1</p>
                     </div>
                     <div>
                         <p>Highest Score: </p>
-                        <p class="score">5,992,995 Points</p>
-                    </div>
-                    <div>
-                        <p>Post Count: </p>
-                        <p class="posts">16</p>
+                        <p class="score">6055 Points</p>
                     </div>
                 </div>
                 <div class="bio">
