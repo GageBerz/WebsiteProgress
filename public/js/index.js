@@ -35,7 +35,6 @@ $(document).ready(
         tabs.click(
             function() {
                 let selected = $(this).attr('id');
-                console.log(selected);
 
                 if ($(this).hasClass('inactive')) {
                     tabs.addClass('inactive');
@@ -69,7 +68,7 @@ $(document).ready(
               });
 
             }
-          );
+        );
 
 
         $('.f-grid').mouseup(
@@ -98,10 +97,11 @@ $(document).ready(
         // Submit Comment
         $('.comment-submit').click(
             function() {
-                console.log('Clicked comment submit');
                 let post = $('.post').first().clone();
-                if (!($('#comment-text').val().length < 10)) {
-                    post.find('.comment').html($('#comment-text').val());
+
+                let sanitized = checkTextAreas($('#comment-text').val());
+                if (!(sanitized.length < 10)) {
+                    post.find('.comment').html(sanitized);
                     post.appendTo('.posts');
                     $('#comment-text').val('');
                 } else {
@@ -114,31 +114,60 @@ $(document).ready(
         $('#settings-button').click(
             function() {
                 let submit_button = $(this).clone().appendTo($('#settings-button-area'));
-                $(submit_button ).find('p').html('Submit Changes');
-                $(submit_button ).css("background-color", "#3daa3b");
+                $(submit_button).find('p').html('Submit Changes');
+                $(submit_button).css("background-color", "#3daa3b");
+
+                let change_avatar = $(this).clone().appendTo('#avatar-container');
+                $(change_avatar).find('p').html('Change Avatar');
+                $(change_avatar).find('i').remove();
+                $(change_avatar).css("background-color", "#5E60CE")
+                $(change_avatar).css("padding", "1% 4%");
+
+
                 $(this).hide();
+
+                
 
                 let previous_name = $('.core-profile-info').find('.name').text();
                 let previous_bio = $('.bio').find('p').text();
+                let previous_avatar = $('.avatar').attr('src');
 
                 $('.core-profile-info').find('.name').replaceWith($('<textarea class="name">' + previous_name + '</textarea>'));
                 $('.bio').find('p').replaceWith($('<textarea class="bio">' + previous_bio + '</textarea>'));
 
                 
 
+                $(change_avatar).click(
+                    function() {
+                        $('.avatar').attr('src', './images/logo.jpg');
+                        $('.avatar-1').attr('src', $('.avatar').attr('src'));
+                    }
+                );
                 
                 $(submit_button).click(
                     function() {
-                        $('.core-profile-info').find('.name').replaceWith($('<p class="name">' + $('.core-profile-info').find('.name').val() + '</p>'));
-                        $('.bio').find('textarea').replaceWith($('<p>' + $('.bio').find('textarea').val() + '</p>'));
+                        let sanitized = checkTextAreas($('.core-profile-info').find('.name').val());
+                        $('.core-profile-info').find('.name').replaceWith($('<p class="name">' + sanitized + '</p>'));
+                        sanitized = checkTextAreas($('.bio').find('textarea').val());
+                        $('.bio').find('textarea').replaceWith($('<p>' + sanitized + '</p>'));
+                        
                         $('#settings-button').show();
+
                         $(submit_button).remove();
+                        $(change_avatar).remove();
+
                         $('.name').html($('.core-profile-info').find('.name').text());
                     }
                 );
 
             }
         );
+
+        function checkTextAreas(input) {
+            let sanitize_scripts = input.replaceAll("<script>", "");
+            sanitize_scripts = sanitize_scripts.replaceAll("</script>", "");
+            return sanitize_scripts;
+        }
 
 
     }
