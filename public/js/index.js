@@ -1,7 +1,7 @@
 $(document).ready( 
     function() {
 
-        // Init stuff
+        // Initialization
         $('.name').html($('.core-profile-info').find('.name').text());
     
         // Header Tabs
@@ -113,7 +113,7 @@ $(document).ready(
         // Change Profile Settings
         $('#settings-button').click(
             function() {
-                let submit_button = $(this).clone().appendTo($('#settings-button-area'));
+                let submit_button = $(this).clone().appendTo('#settings-button-area');
                 $(submit_button).find('p').html('Submit Changes');
                 $(submit_button).css("background-color", "#3daa3b");
 
@@ -139,24 +139,29 @@ $(document).ready(
 
                 $(change_avatar).click(
                     function() {
-                        $('.avatar').attr('src', './images/logo.jpg');
-                        $('.avatar-1').attr('src', $('.avatar').attr('src'));
+                        let image_link = window.prompt('Enter url for image: ');
+                        $('.avatar').attr('src', image_link);
+                        console.log($('.avatar').attr('src'));
                     }
                 );
                 
                 $(submit_button).click(
                     function() {
+                        // Sanitize & read input from user for name & bio.
                         let sanitized = checkTextAreas($('.core-profile-info').find('.name').val());
                         $('.core-profile-info').find('.name').replaceWith($('<p class="name">' + sanitized + '</p>'));
+
                         sanitized = checkTextAreas($('.bio').find('textarea').val());
                         $('.bio').find('textarea').replaceWith($('<p>' + sanitized + '</p>'));
                         
+                        // Make everything the way it was previously.
                         $('#settings-button').show();
-
                         $(submit_button).remove();
                         $(change_avatar).remove();
 
+                        // Apply these changes everywhere else.
                         $('.name').html($('.core-profile-info').find('.name').text());
+                        $('.avatar-1').attr('src', $('.avatar').attr('src'));
                     }
                 );
 
