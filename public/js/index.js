@@ -141,7 +141,6 @@ $(document).ready(
                     function() {
                         let image_link = window.prompt('Enter url for image: ');
                         $('.avatar').attr('src', image_link);
-                        console.log($('.avatar').attr('src'));
                     }
                 );
                 
