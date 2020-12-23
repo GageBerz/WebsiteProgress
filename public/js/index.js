@@ -59,8 +59,8 @@ $(document).ready(
 
         $(document).mousemove(
             function(e) {
-              let x = e.pageX;
-              let y = e.pageY;
+              let x = e.pageX - window.pageXOffset; // client.x
+              let y = e.pageY - window.pageYOffset; // client.y
 
               $('.dragging-area').css({
               'left':x,
